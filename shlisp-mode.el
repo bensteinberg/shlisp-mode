@@ -60,7 +60,6 @@
   `((
      ( "^;.*$" . font-lock-comment-face)
      ( "-?\\b[0-9]+\\b" . font-lock-warning-face)
-     ;( "\\b[abcdefgh]\\b" . font-lock-constant-face)
      ( ,(regexp-opt shlisp-nuts 'strings) . font-lock-builtin-face)
      ( ,(regexp-opt shlisp-opcodes 'strings) . font-lock-keyword-face)
      ( ,(regexp-opt shlisp-butts 'strings) . font-lock-string-face)
@@ -73,24 +72,24 @@
  "Comment or uncomment current line or selection."
  (interactive)
 
-;; If there's no text selection, comment or uncomment the line
-  ;; depending whether the WHOLE line is a comment. If there is a text
-  ;; selection, using the first line to determine whether to
-  ;; comment/uncomment.
-  (let (p1 p2)
-    (if (region-active-p)
-        (save-excursion
-          (setq p1 (region-beginning) p2 (region-end))
-          (goto-char p1)
-          (if (wholeLineIsCmt-p)
-              (shlisp-uncomment-region p1 p2)
-            (shlisp-comment-region p1 p2)
-            ))
-      (progn
-        (if (wholeLineIsCmt-p)
-            (shlisp-uncomment-current-line)
-          (shlisp-comment-current-line)
-          )) )))
+ ;; If there's no text selection, comment or uncomment the line
+ ;; depending whether the WHOLE line is a comment. If there is a text
+ ;; selection, using the first line to determine whether to
+ ;; comment/uncomment.
+ (let (p1 p2)
+   (if (region-active-p)
+       (save-excursion
+	 (setq p1 (region-beginning) p2 (region-end))
+	 (goto-char p1)
+	 (if (wholeLineIsCmt-p)
+	     (shlisp-uncomment-region p1 p2)
+	   (shlisp-comment-region p1 p2)
+	   ))
+     (progn
+       (if (wholeLineIsCmt-p)
+	   (shlisp-uncomment-current-line)
+	 (shlisp-comment-current-line)
+	 )) )))
 
 (defun wholeLineIsCmt-p ()
   (save-excursion
@@ -137,18 +136,9 @@
 (define-derived-mode shlisp-mode emacs-lisp-mode "shlisp"
   "shlisp mode is a major mode for editing shlisp files"
   
-  ;; you again used quote when you had '((shlisp-hilite))
-  ;; I just updated the variable to have the proper nesting (as noted above)
-  ;; and use the value directly here
   (setq font-lock-defaults shlisp-font-lock-defaults)
   
-  ;; for comments
-  ;; overriding these vars gets you what (I think) you want
-  ;; they're made buffer local when you set them
   (setq comment-start ";")
-
-  ;(modify-syntax-entry ?\; "< b" shlisp-mode-syntax-table)
-  ;(modify-syntax-entry ?\n "> b" shlisp-mode-syntax-table)
 
   ;; modify the keymap
   (define-key shlisp-mode-map [remap comment-dwim] 'shlisp-comment-dwim)
@@ -174,7 +164,6 @@
     (message "Sent code to shnth")
     )
 )
-;(global-set-key (kbd "M-TAB") 'shlisp-complete-symbol)
 
 (global-set-key (kbd "M-s") 'shlisp-run-shlisp)
 
