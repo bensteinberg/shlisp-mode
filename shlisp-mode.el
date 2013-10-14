@@ -160,7 +160,7 @@
   (interactive)
   (let* (
 	(fName (buffer-file-name))
-	(progName "/Applications/shnth483/shlsp/shlisp.app")
+	(progName "shlisp.app") ; must be in your $PATH
 	(cmdStr (concat progName " " fName))
 	)
     (when (buffer-modified-p)
