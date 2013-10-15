@@ -1,3 +1,4 @@
+;; comment for test
 (defvar shlisp-opcodes
   '("horn"
     "saw"
