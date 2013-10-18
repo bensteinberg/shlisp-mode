@@ -1,6 +1,6 @@
 shlisp-mode
 ===========
-A derived major mode for the shlisp language, for GNU Emacs.  shlisp is the language of the shnth.
+A derived major mode for the shlisp language, for GNU Emacs.  shlisp is the language of the [shnth](http://shbobo.net/).
 
 Put 
 ```
@@ -13,7 +13,3 @@ Put
 on the first line. 
 
 M-s sends the current file to the shnth.  The shlisp application has to be in your $PATH.  OS checking has not been tested, except on a Mac.
-
-See also:
-
-* http://shbobo.net/
