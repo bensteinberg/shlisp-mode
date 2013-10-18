@@ -151,13 +151,19 @@
   (interactive)
   (let* (
 	(fName (buffer-file-name))
-	(progName "shlisp.app") ; must be in your $PATH
-	(cmdStr (concat progName " " fName))
+	(progName)
+	(cmdStr)
 	)
+    (cond
+     ((eq system-type 'darwin) (setq progName "shlisp.app"))
+     ((eq system-type 'windows-nt) (setq progName "shlisp.exe"))
+     (t (setq progName "shlisp"))
+     )
+    (setq cmdStr (concat progName " " fName))
     (when (buffer-modified-p)
       (when (y-or-n-p "Buffer modified. Do you want to save first?")
 	(save-buffer) ) )
-    (message cmdStr)
+    ;(message cmdStr)
     (progn
       (message "Running…")
       (shell-command cmdStr "*run-current-file output*" )
