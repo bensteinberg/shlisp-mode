@@ -12,7 +12,7 @@ Put
 ```
 on the first line. 
 
-M-s sends the current file to the shnth.  You might have to change the name of the shlisp program if you're not on a Mac; this is on my list of things to figure out.
+M-s sends the current file to the shnth.  The shlisp application has to be in your $PATH.  OS checking has not been tested, except on a Mac.
 
 See also:
 
